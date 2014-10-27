@@ -118,15 +118,26 @@ console.log("Creando Variables Iniciales");
 
       // one revolution per 4 seconds
         var angularSpeed = 360 / 4;
+
+        var vectorY = 50;
         var anim = new Kinetic.Animation(function(frame) {
           var angleDiff = frame.timeDiff * angularSpeed / 1000;
-          rectangulo.rotate(angleDiff);
-   
+        //  rectangulo.rotate(angleDiff);
+             
+            rectangulo.setY(vectorY);
+             vectorY+=1;
+             
+             if (rectangulo.getY() == escenario.getHeight() - rectangulo.getHeight()) {
+
+					anim.stop();
+					addRect ();
+
+             }
         }, principal);
 
         anim.start();
 
-        
+
 	    	// creacion de un rectangulo
 	    	principal.add( rectangulo);
 	    	principal.draw();
