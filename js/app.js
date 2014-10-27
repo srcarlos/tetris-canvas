@@ -31,58 +31,37 @@
 	    strokeWidth: 2,
 	    draggable: true
 	});
-
-
 	 
-	principal.add(rect);
-   
-  
-
- //   escenario.add(fondo);
+	// 
+ 	principal.add(rect);
     escenario.add(principal);
     escenario.draw();
 
 
-
-
-
-		    //gets the canvas context
-		var canvas = escenario.getContainer();
-		console.log(canvas)
+      var canvas = escenario.getContainer();
+	  //console.log(canvas)
         
-principal.on('click', function() { 
+  // evento cuando le den click para que gire  
+ principal.on('click', function() { 
 
-	if  (rect.isDragging() || principal.isDragging()) {
-
-   console.log('position mouse on canvas: '+'x: ' + rect.getPosition().x + ', y: ' +  rect.getPosition().y);
-    console.log ("es drag");
-	} 
- 
-        rect.rotateDeg(30);
+      	rect.rotateDeg(30);
          principal.draw();
 
+
+        console.log('Moviendose: '+'x: ' + rect.getPosition().x + ', y: ' +  rect.getPosition().y);
 });
 
 
-principal.on('mousemove', function(e) {
-
-	/*if  (rect.isDragging() || principal.isDragging()) {
-
-   console.log('position mouse on canvas: '+'x: ' + rect.getPosition().x + ', y: ' +  rect.getPosition().y);
-    console.log ("es drag");
-	
-	} */
- 
-
-
-});
-
-
+// evento para cuando se mueva el layer
 principal.on('dragmove', function(e) {
 
 	if  (rect.isDragging() || principal.isDragging()) {
 
-   console.log('Moviendose: '+'x: ' + rect.getPosition().x + ', y: ' +  rect.getPosition().y);
+   //console.log('Moviendose: '+'x: ' + rect.getPosition().x + ', y: ' +  rect.getPosition().y);
+   var json =  '[{"positionInicio": {"x":'+rect.getPosition().x+', "y":'+rect.getPosition().y+'}}]';
+
+
+   console.log('Moviendose: '+json);
   
   $.ajax({
 type: "POST",
@@ -99,7 +78,7 @@ dataType: ""
 });
 
 
-// write out drag and drop events
+  // evento cuando inicie el drag
 principal.on('dragstart', function() {
 
 /*		if  (rect.isDragging() || principal.isDragging()) {
@@ -127,6 +106,8 @@ dataType: ""
 
 
 });
+
+  // evento cuando finalice el drag
 principal.on('dragend', function() {
 //console.log("dragend",rect.getPosition());
 //posiciones.push (rect.getPosition());
@@ -136,7 +117,11 @@ principal.on('dragend', function() {
 //console.log(json);
 
 });
+
+
+
 var shiftPressed
+  // agregando evento cuando presione Abajo
 window.addEventListener('keydown', function (e) {
     
      
@@ -152,12 +137,9 @@ window.addEventListener('keydown', function (e) {
 }, true);
 
 
+  // agregando evento cuando presione Arriba
 window.addEventListener('keyup', function (e) {
-   
-  
-     
-
-
+ 
     if (e.keyCode == "38") {
        shiftPressed = false;
        console.log("Arriba");
@@ -168,22 +150,6 @@ window.addEventListener('keyup', function (e) {
    // console.log(shiftPressed)
 }, true);
 
-        /*
-
-       var canvas = document.getElementById('myCanvas');
-      var context = canvas.getContext('2d');
-
-
-      var rectWidth = 200;
-      var rectHeight = 100;
-
-      // translate context to center of canvas
-      context.translate(200, 200);
-        // rotate 45 degrees clockwise
-      context.rotate(Math.PI / 4);
-
-
-      context.fillStyle = 'grey';
-      context.fillRect(rectWidth / -2, rectHeight / -2, rectWidth, rectHeight); */
-      };
+   
+ };
 
