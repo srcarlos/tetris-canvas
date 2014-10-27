@@ -6,10 +6,11 @@ console.log("Creando Variables Iniciales");
 
 // Declarcion de Variables
    var i =0; // Simulando la generacion de IDS
+   var indexAnterior=0;
    var escenario;
    var principal;
    var JSONposiciones = [ ];
-
+   var colores = ['#D24D57','#446CB3', '#03C9A9', 'skyblue', '#EB974E'];
 
 
 
@@ -19,7 +20,7 @@ console.log("Creando Variables Iniciales");
     escenario = new Kinetic.Stage({
     	container: 'myCanvas',
     	width:  600,
-    	height:  500,
+    	height:  300,
     });
 
 
@@ -35,6 +36,19 @@ console.log("Creando Variables Iniciales");
  // Funcion para Crear Rectangulos
  function addRect () {
 
+  
+   
+   var index = Math.floor(Math.random()*colores.length);
+  
+  while (index==indexAnterior){
+    
+    if (index==indexAnterior ){
+      index =Math.floor(Math.random()*colores.length);
+    }
+    
+  };
+
+  console.log (index +"---"+indexAnterior)
 
  	var rectangulo = new Kinetic.Rect({
  		x: 200,
@@ -42,12 +56,14 @@ console.log("Creando Variables Iniciales");
  		width: 120,
  		height: 80,
  		offset: [50, 35],
- 		fill: 'skyblue',
+ 		fill: colores[index],
  		stroke: 'lightgray',
  		strokeWidth: 2,
  		draggable: true,
  		id: ""+i++
  	});
+
+ 	indexAnterior = index;
 
     	  // agregando evento cuando presione Abajo
     	  window.addEventListener('keydown', function (e) {
