@@ -1,6 +1,9 @@
 
    var principal;
-    var rect;
+   var rect;
+   
+   var JSONposiciones = [ ];
+
    function agregar () {
 
    	console.log("Iniciando");
@@ -29,7 +32,6 @@
 	    draggable: true
 	});
 
-	
 
 	 
 	principal.add(rect);
@@ -50,12 +52,90 @@
         
 principal.on('click', function() { 
 
+	if  (rect.isDragging() || principal.isDragging()) {
+
+   console.log('position mouse on canvas: '+'x: ' + rect.getPosition().x + ', y: ' +  rect.getPosition().y);
+    console.log ("es drag");
+	} 
+ 
         rect.rotateDeg(30);
          principal.draw();
 
 });
 
 
+principal.on('mousemove', function(e) {
+
+	/*if  (rect.isDragging() || principal.isDragging()) {
+
+   console.log('position mouse on canvas: '+'x: ' + rect.getPosition().x + ', y: ' +  rect.getPosition().y);
+    console.log ("es drag");
+	
+	} */
+ 
+
+
+});
+
+
+principal.on('dragmove', function(e) {
+
+	if  (rect.isDragging() || principal.isDragging()) {
+
+   console.log('Moviendose: '+'x: ' + rect.getPosition().x + ', y: ' +  rect.getPosition().y);
+  
+  $.ajax({
+type: "POST",
+url: "http://localhost/canvas.php",
+data: "data",
+success: "",
+dataType: ""
+});
+	
+	} 
+ 
+
+
+});
+
+
+// write out drag and drop events
+principal.on('dragstart', function() {
+
+/*		if  (rect.isDragging() || principal.isDragging()) {
+
+   console.log('position mouse on canvas: '+'x: ' + rect.getPosition().x + ', y: ' +  rect.getPosition().y);
+    console.log ("es drag");
+	} */
+//console.log("dragstart",rect.getPosition());
+//J
+
+//var json =  '[{"positionInicio": {"x":'+rect.getPosition().x+', "y":'+rect.getPosition().y+'}}]';
+
+//JSONposiciones.push (json);
+//console.log(json);
+//JSONposiciones.push (json);
+//console.log(JSONposiciones);
+/*
+$.ajax({
+type: "POST",
+url: "http://localhost/canvas.php",
+data: "data",
+success: "",
+dataType: ""
+}); */
+
+
+});
+principal.on('dragend', function() {
+//console.log("dragend",rect.getPosition());
+//posiciones.push (rect.getPosition());
+//var json =  '[{"positionFin": {"x":'+rect.getPosition().x+', "y":'+rect.getPosition().y+'}}]';
+
+//JSONposiciones.push (json);
+//console.log(json);
+
+});
 var shiftPressed
 window.addEventListener('keydown', function (e) {
     
