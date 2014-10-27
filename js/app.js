@@ -1,5 +1,8 @@
 
 
+document.getElementById("myCanvas").addEventListener('contextmenu', function (event) {
+  event.preventDefault();
+});
 console.log("Creando Variables Iniciales");
 
 
@@ -10,7 +13,7 @@ console.log("Creando Variables Iniciales");
    var escenario;
    var principal;
    var JSONposiciones = [ ];
-   var colores = ['#D24D57','#446CB3', '#03C9A9', 'skyblue', '#EB974E'];
+   var colores = ['#D24D57','#446CB3', '#03C9A9', 'skyblue', '#EB974E' ,'#D35400' ,'grey'];
 
 
 
@@ -85,7 +88,7 @@ console.log("Creando Variables Iniciales");
 
   	if (e.keyCode == "38") {
   		console.log("Arriba");
-  		rectangulo.rotateDeg(-30);
+  		rectangulo.rotateDeg(-40);
   		principal.draw(); 
 
   	}
@@ -97,12 +100,15 @@ console.log("Creando Variables Iniciales");
      rectangulo.on('click', function() { 
 
 	   //  console.log(principal);
-	   this.rotateDeg(30);
+	   this.rotateDeg(40);
 	   principal.draw();
 
 
-	   console.log('Rotando: '+'x: ' + this.getPosition().x + ', y: ' +  this.getPosition().y);
+	   console.log(' click  Rotando: '+'x: ' + this.getPosition().x + ', y: ' +  this.getPosition().y);
 	});
+
+
+
 
 
 	// evento para cuando se mueva el layer
@@ -167,8 +173,16 @@ console.log("Creando Variables Iniciales");
 
 
 
+ escenario.on('click', stgClicked);
 
-
+// Para el segundo click
+ function stgClicked(event) {
+     if (event.button == 2) {
+         alert('rightclick');
+         var node = event.targetNode;
+         console.log(node);
+     }
+ }
 
 
 // Funcion para agregar
