@@ -145,7 +145,7 @@ console.log("Creando Variables Iniciales");
              
              if (rectangulo.getY() == escenario.getHeight() - rectangulo.getHeight()) {
 
-					//anim.stop();
+					anim.stop();
 					//addRect ();
 
              }
